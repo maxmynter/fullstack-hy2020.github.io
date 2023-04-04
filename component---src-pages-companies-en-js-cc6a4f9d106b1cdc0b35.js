@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[29],{jFuX:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),o=t.n(a),p=t("xEVu");n.default=()=>o.a.createElement(p.a,{lang:"en",title:"Partner companies | Full Stack open",seoDescription:"Full stack development in partner companies"})}}]);
+//# sourceMappingURL=component---src-pages-companies-en-js-cc6a4f9d106b1cdc0b35.js.map

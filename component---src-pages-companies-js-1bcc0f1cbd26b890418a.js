@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{IaAM:function(t,e,i){"use strict";i.r(e);var s=i("q1tI"),a=i.n(s),n=i("xEVu");e.default=()=>a.a.createElement(n.a,{lang:"fi",title:"Yritysesittelyt | Full Stack open",seoDescription:"Kurssin yhteistyöyritysten devaajat esittäytyvät"})}}]);
+//# sourceMappingURL=component---src-pages-companies-js-1bcc0f1cbd26b890418a.js.map
