@@ -918,6 +918,7 @@ Next, let's alter the <em>useRepositories</em> hook so that it returns a decorat
 const useRepositories = (variables) => {
   const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
     variables,
+    notifyOnNetworkStatusChange: true,
     // ...
   });
 
