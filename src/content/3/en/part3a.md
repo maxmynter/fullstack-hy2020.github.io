@@ -154,7 +154,7 @@ import http from 'http'
 
 These days, code that runs in the browser uses ES6 modules. Modules are defined with an [export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) and taken into use with an [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
-However, Node.js uses so-called [CommonJS](https://en.wikipedia.org/wiki/CommonJS) modules. The reason for this is that the Node ecosystem had a need for modules long before JavaScript supported them in the language specification. Node supports now also the use of ES6 modules, but since the support is yet [not quite perfect](https://nodejs.org/api/esm.html#modules-ecmascript-modules) we'll stick to CommonJS modules.
+However, Node.js uses so-called [CommonJS](https://en.wikipedia.org/wiki/CommonJS) modules. The reason for this is that the Node ecosystem had a need for modules long before JavaScript supported them in the language specification. Node supports now also the use of ES6 modules, but since the support is [not quite perfect](https://nodejs.org/api/esm.html#modules-ecmascript-modules) yet, we'll stick to CommonJS modules.
 
 CommonJS modules function almost exactly like ES6 modules, at least as far as our needs in this course are concerned.
 
@@ -603,6 +603,8 @@ Many tools exist for making the testing of backends easier. One of these is a co
 Let's install the Postman desktop client [from here](https://www.postman.com/downloads/)  and try it out:
 
 ![postman screenshot on api/notes/2](../../images/3/11x.png)
+NB: Postman is also available on VS Code which can be dowloaded from the Extension tab on the left -> search for Postman -> First result (Verified Publisher) -> Install
+You will then see an extra icon added on the activity bar below the extensions tab. Once you login, you can follow from the steps below 
 
 Using Postman is quite easy in this situation. It's enough to define the URL and then select the correct request type (DELETE).
 
@@ -883,6 +885,10 @@ Implement a page at the address <http://localhost:3001/info> that looks roughly 
 ![Screenshot for 3.2](../../images/3/23x.png)
 
 The page has to show the time that the request was received and how many entries are in the phonebook at the time of processing the request.
+  
+There can only be one response.send() statement in an Express app route. Once you send a response to the client using response.send(), the request-response cycle is complete and no further response can be sent. 
+  
+To include a line space in the output, use `<br/>` tag, or wrap the statements in `<p>` tags.
 
 #### 3.3: Phonebook backend step3
 

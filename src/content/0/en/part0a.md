@@ -174,7 +174,7 @@ By submitting all exercises for part 13 of the course on Relational databases, y
 
 How to study the course – instructions in a nutshell: 5 cr core course CSM141081
 
-- Do the exercises. The exercises are submitted through GitHub and marking them as done on the [submission system](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).
+- Do the exercises. The exercises are submitted through GitHub and marking them is done on the [submission system](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).
     - [The course certificate](/en/part0/general_info#course-certificate) will be available in the submission system
 - If you want to get University of Helsinki credits
     - Enroll in the course. You will get the enrollment link through the submission system once you have completed enough exercises. Read more [here](/en/part0/general_info#submitting-exercises)
@@ -186,7 +186,7 @@ Please note that if you do the "base course" with 6 or 7 credits, you need separ
 
 How to study the course – instructions in a nutshell: other course parts
 
-- Do the exercises. The exercises are submitted through GitHub and marking them as done on the submission system. Note that parts 8-13 have a separate instance in the submission system
+- Do the exercises. The exercises are submitted through GitHub and marking them is done on the submission system. Note that parts 8-13 have a separate instance in the submission system
     - [The course certificate](/en/part0/general_info#course-certificate) will be available in the submission system
 - If you want to get University of Helsinki credits
     - Enroll in the course. You can enroll in each part through the link in the course material ([Parts and completion](/en/part0/general_info#parts-and-completion)). Enroll in each part separately.
@@ -340,10 +340,7 @@ Despite changes <i>all the submitted exercises remain valid</i>, and the course 
 
 Recent major changes
 
-- Part 2 (18th Jan 2023): Exercise numbering changed, the old 2.11-13. moved to the end of the part
-- Part 6 (30th Jan 2023): A new section on React Query, useReducer and React context replaced the section on Redux connect
-- Part 8 (5th Feb 2023): Backend updated to use Apollo Server 4.0
-- Part 9 (12th Feb 2023): Content clarified, Patientor example app structure refactored to a much simpler form
+- Parts 1-3 (11-14th August): Create React app replaced with Vite
 
 ### Expanding on a previously completed course
 

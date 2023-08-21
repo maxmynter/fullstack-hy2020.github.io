@@ -42,9 +42,9 @@ on:
   push:
     branches:
       - master
-  pull_request: // highlight-line
-    branches: [master] // highlight-line
-    types: [opened, synchronize] // highlight-line
+  pull_request: # highlight-line
+    branches: [master] # highlight-line
+    types: [opened, synchronize] # highlight-line
     
 # note that your "main" branch might be called main instead of master
 ```
@@ -173,7 +173,7 @@ We will extend our workflow with one more step:
 - name: Bump version and push tag
   uses: anothrNick/github-tag-action@1.55.0
   env:
-    GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Note: you should use the most recent version of the action, see [here](https://github.com/anothrNick/github-tag-action) if a more recent version is available. 

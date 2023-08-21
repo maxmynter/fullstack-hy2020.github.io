@@ -9,7 +9,7 @@ lang: en
 
 Having written a nice application it's time to think about how we're going to deploy it to the use of real users. 
 
-In [part 3](/en/part3/deploying_app_to_internet) of this course, we did this by simply by running a single command from terminal to get the code up and running the servers of the cloud provider [Fly.io](https://fly.io/) or [Render](hhttps://render.com/).
+In [part 3](/en/part3/deploying_app_to_internet) of this course, we did this by simply running a single command from terminal to get the code up and running the servers of the cloud provider [Fly.io](https://fly.io/) or [Render](https://render.com/).
 
 It is pretty simple to release software in Fly.io and Render at least compared to many other types of hosting setups but it still contains risks: nothing prevents us from accidentally releasing broken code to production.
 
@@ -52,7 +52,7 @@ Let's define some things we **want** in this hypothetical deployment system too:
  - We would like it to be fast
  - We'd like to have no downtime during the deployment (this is distinct from the requirement we have for handling user requests just before/during the deployment).
 
-Next we will have two sets of exercises for automazing the deployment with GitHub Actions, one for those who want to use [Fly.io](https://fly.io/) and one for those who want to use [Heroku](https://heroku.com) for the deployment.  The process of deployment is always specific to the particular cloud provider, so you can also do the both the exercise sets if you want to see the differences how these services work with respect to deployments.
+Next we will have three sets of exercises for automazing the deployment with GitHub Actions, one for [Fly.io](https://fly.io/), another one for [Render](https://render.com/) and finally the good old [Heroku](https://heroku.com). The process of deployment is always specific to the particular cloud provider, so you can also do both the exercise sets if you want to see the differences how these services work with respect to deployments.
 
 </div>
 
@@ -62,7 +62,7 @@ Next we will have two sets of exercises for automazing the deployment with GitHu
 
 Before going to the below exercises, you should setup your application in [Fly.io](https://fly.io/) hosting service like the one we did in [part 3](/en/part3/deploying_app_to_internet#application-to-the-internet).
 
-If you rather want to use other hosting options, there is an alternative set of exercises for [Render](http://localhost:8000/en/part11/deployment#exercises-11-10-11-12-render) and for [Heroku](/en/part11/deployment#exercises-11-10-11-12-heroku).
+If you rather want to use other hosting options, there is an alternative set of exercises for [Render](/en/part11/deployment#exercises-11-10-11-12-render) and for [Heroku](/en/part11/deployment#exercises-11-10-11-12-heroku).
 
 In contrast to part 3 now we <i>do not deploy the code</i> to Fly.io ourselves (with the command <i>flyctl deploy</i>), we let the GitHub Actions workflow do that for us!
 
@@ -147,8 +147,6 @@ ${{secrets.FLY_API_TOKEN}}
 If all goes well, your workflow log should look a bit like this:
 
 ![](../../images/11/11.png)
-
-You can then try the app with a browser, but most likely you run into a problem. If we read carefully [the section 'Application to the Internet' in part 3](/en/part3/deploying_app_to_internet#application-to-the-internet)
 
 **Remember** that it is always essential to keep an eye on what is happening in server logs when playing around with product deployments, so use <code>flyctl logs</code> early and use it often. No, use it all the time!
 
@@ -254,6 +252,8 @@ Before moving to next exercise, fix your deployment and ensure that the applicat
 
 #### 11.12. Custom health check
 
+**NOTE:** at the moment the the custom health check feature in Fly.io does not work. You can mark this exercise done without doing anything. A replacement for this exercise will be developed later...
+
 Besides TCP and HTTP based health checks, Fly.io allows to use very flexible shell script based health checks. The feature is still undocumented but e.g. [this](https://community.fly.io/t/verifying-services-script-checks-is-supported/1464) shows you how to use it.
 
 Create a file <i>health\_check.sh</i> with the following content:
@@ -332,7 +332,7 @@ If you rather want to use other hosting options, there is an alternative set of 
 
 #### 11.10 Deploying your application to Render
 
-Set up your application in [Render](render.com). The setup is now not quite as straightforward as in [part 3](/en/part3/deploying_app_to_internet#application-to-the-internet). You have to carefully think about what should go to these settings:
+Set up your application in [Render](https://render.com/). The setup is now not quite as straightforward as in [part 3](/en/part3/deploying_app_to_internet#application-to-the-internet). You have to carefully think about what should go to these settings:
 
 ![](../../images/11/render1.png)
 
@@ -372,6 +372,18 @@ Set up the action to your workflow and ensure that every commit that pass all th
 ```bash
 https://dashboard.render.com/web/srv-crandomcharachtershere
 ```
+Alternatively you could just use [Render Deploy Hook](https://render.com/docs/deploy-hooks) which is a private url to trigger the deployment. You can get it from your app settings ![fsorender1](https://user-images.githubusercontent.com/47830671/230722899-1ebb414e-ae1e-4a5e-a7b8-f376c4f1ca4d.png). 
+DON'T USE the plain url in your pipeline. Instead create github secrets for your key and service id: ![fsorender2](https://user-images.githubusercontent.com/47830671/230723138-77d027be-3162-4697-987e-b654bc710187.png)
+Then you can use them like this: 
+``` bash
+    main:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deployment
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+```
+
 
 The deployment takes some time. See the events tab of the Render dashboard to see when the new deployment is ready:
 

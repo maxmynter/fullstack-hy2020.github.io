@@ -7,9 +7,11 @@ lang: en
 
 <div class="content">
 
-Let's continue expanding our application by allowing users to add new notes. You can find the code for our current application [here](https://github.com/fullstack-hy2020/part2-notes/tree/part2-1).
+Let's continue expanding our application by allowing users to add new notes. You can find the code for our current application [here](https://github.com/fullstack-hy2020/part2-notes-frontend/tree/part2-1).
 
-To get our page to update when new notes are added it's best to store the notes in the <i>App</i> component's state. Let's import the [useState](https://reactjs.org/docs/hooks-state.html) function and use it to define a piece of state that gets initialized with the initial notes array passed in the props.
+### Saving the notes in the component state
+
+To get our page to update when new notes are added it's best to store the notes in the <i>App</i> component's state. Let's import the [useState](https://react.dev/reference/react/useState) function and use it to define a piece of state that gets initialized with the initial notes array passed in the props.
 
 ```js
 import { useState } from 'react' // highlight-line
@@ -102,7 +104,7 @@ const addNote = (event) => {
 }
 ```
 
-The <em>event</em> parameter is the [event](https://reactjs.org/docs/handling-events.html) that triggers the call to the event handler function:
+The <em>event</em> parameter is the [event](https://react.dev/learn/responding-to-events) that triggers the call to the event handler function:
 
 The event handler immediately calls the <em>event.preventDefault()</em> method, which prevents the default action of submitting a form. The default action would, [among other things](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event), cause the page to reload.
 
@@ -116,7 +118,7 @@ How do we access the data contained in the form's <i>input</i> element?
 
 ### Controlled component
 
-There are many ways to accomplish this; the first method we will take a look at is through the use of so-called [controlled components](https://reactjs.org/docs/forms.html#controlled-components).
+There are many ways to accomplish this; the first method we will take a look at is through the use of so-called [controlled components](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable).
 
 Let's add a new piece of state called <em>newNote</em> for storing the user-submitted input **and** let's set it as the <i>input</i> element's <i>value</i> attribute:
 
@@ -155,7 +157,7 @@ The placeholder text stored as the initial value of the <em>newNote</em> state a
 
 ![provided value to prop without onchange console error](../../images/2/7e.png)
 
-Since we assigned a piece of the <i>App</i> component's state as the <i>value</i> attribute of the input element, the <i>App</i> component now [controls](https://reactjs.org/docs/forms.html#controlled-components) the behavior of the input element.
+Since we assigned a piece of the <i>App</i> component's state as the <i>value</i> attribute of the input element, the <i>App</i> component now [controls](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) the behavior of the input element.
 
 To enable editing of the input element, we have to register an <i>event handler</i> that synchronizes the changes made to the input with the component's state:
 
@@ -249,7 +251,7 @@ The new note is added to the list of notes using the [concat](https://developer.
 setNotes(notes.concat(noteObject))
 ```
 
-The method does not mutate the original <em>notes</em> array, but rather creates <i>a new copy of the array with the new item added to the end</i>. This is important since we must [never mutate state directly](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly) in React!
+The method does not mutate the original <em>notes</em> array, but rather creates <i>a new copy of the array with the new item added to the end</i>. This is important since we must [never mutate state directly](https://react.dev/learn/updating-objects-in-state#why-is-mutating-state-not-recommended-in-react) in React!
 
 The event handler also resets the value of the controlled input element by calling the <em>setNewNote</em> function of the <em>newNote</em> state:
 
@@ -257,7 +259,7 @@ The event handler also resets the value of the controlled input element by calli
 setNewNote('')
 ```
 
-You can find the code for our current application in its entirety in the <i>part2-2</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part2-notes/tree/part2-2).
+You can find the code for our current application in its entirety in the <i>part2-2</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part2-notes-frontend/tree/part2-2).
 
 ### Filtering Displayed Elements
 
@@ -390,7 +392,7 @@ The text of the button depends on the value of the <em>showAll</em> state:
 show {showAll ? 'important' : 'all'}
 ```
 
-You can find the code for our current application in its entirety in the <i>part2-3</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part2-notes/tree/part2-3).
+You can find the code for our current application in its entirety in the <i>part2-3</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part2-notes-frontend/tree/part2-3).
 </div>
 
 <div class="tasks">
@@ -398,8 +400,6 @@ You can find the code for our current application in its entirety in the <i>part
 <h3>Exercises 2.6.-2.10.</h3>
 
 In the first exercise, we will start working on an application that will be further developed in the later exercises. In related sets of exercises, it is sufficient to return the final version of your application. You may also make a separate commit after you have finished each part of the exercise set, but doing so is not required.
-
-**WARNING** create-react-app will automatically turn your project into a git-repository unless you create your application inside of an existing git repository. You likely **do not want** your project to be a repository, so simply run the _rm -rf .git_ command at the root of your application.
 
 <h4>2.6: The Phonebook Step1</h4>
 

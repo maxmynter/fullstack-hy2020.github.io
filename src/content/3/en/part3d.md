@@ -85,7 +85,7 @@ When validating an object fails, we return the following default error message f
 ![postman showing error message](../../images/3/50.png)
 
 We notice that the backend has now a problem: validations are not done when editing a note.
-The [documentation](https://github.com/blakehaswell/mongoose-unique-validator#find--updates) explains what is the problem, validations are not run by default when <i>findOneAndUpdate</i> is executed.
+The [documentation](https://github.com/blakehaswell/mongoose-unique-validator#find--updates) addresses the issue by explaining that validations are not run by default when <i>findOneAndUpdate</i> is executed.
 
 The fix is easy. Let us also reformulate the route code a bit:
 
@@ -141,7 +141,7 @@ The Render Dashboard shows the server logs:
 
 ![render dashboard with arrow pointting to server running on port 10000](../../images/3/r7.png)
 
-You can find the code for our current application in its entirety in the <i>part3-5</i> branch of [this GitHub repository](https://github.com/fullstack-hy2019/part3-notes-backend/tree/part3-5).
+You can find the code for our current application in its entirety in the <i>part3-6</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part3-notes-backend/tree/part3-6).
 
 </div>
 
@@ -175,10 +175,10 @@ You can display the default error message returned by Mongoose, even though they
 
 #### 3.20*: Phonebook database, step8
 
-Add validation to your phonebook application, which will make sure that phone numbers are of the correct form. A phone number must
+Add validation to your phonebook application, which will make sure that phone numbers are of the correct form. A phone number must:
 
-- has length of 8 or more
-- if formed of two parts that are separated by -, the first part has two or three numbers and the second part also consists of numbers
+- have length of 8 or more
+- be formed of two parts that are separated by -, the first part has two or three numbers and the second part also consists of numbers
     - eg. 09-1234556 and 040-22334455 are valid phone numbers
     - eg. 1234556, 1-22334455 and 10-22-334455 are invalid
 
@@ -208,9 +208,9 @@ Before we move on to the next part, we will take a look at an important tool cal
 
 In compiled statically typed languages like Java, IDEs like NetBeans can point out errors in the code, even ones that are more than just compile errors. Additional tools for performing [static analysis](https://en.wikipedia.org/wiki/Static_program_analysis) like [checkstyle](https://checkstyle.sourceforge.io), can be used for expanding the capabilities of the IDE to also point out problems related to style, like indentation.
 
-In the JavaScript universe, the current leading tool for static analysis aka. "linting" is [ESlint](https://eslint.org/).
+In the JavaScript universe, the current leading tool for static analysis (aka "linting") is [ESlint](https://eslint.org/).
 
-Let's install ESlint as a development dependency to the backend project with the command:
+Let's install ESlint as a development dependency to the notes backend project with the command:
 
 ```bash
 npm install eslint --save-dev
@@ -383,7 +383,7 @@ If there is something wrong in your configuration file, the lint plugin can beha
 
 Many companies define coding standards that are enforced throughout the organization through the ESlint configuration file. It is not recommended to keep reinventing the wheel over and over again, and it can be a good idea to adopt a ready-made configuration from someone else's project into yours. Recently many projects have adopted the Airbnb [Javascript style guide](https://github.com/airbnb/javascript) by taking Airbnb's [ESlint](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) configuration into use.
 
-You can find the code for our current application in its entirety in the <i>part3-6</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part3-notes-backend/tree/part3-6).
+You can find the code for our current application in its entirety in the <i>part3-7</i> branch of [this GitHub repository](https://github.com/fullstack-hy2020/part3-notes-backend/tree/part3-7).
 </div>
 
 <div class="tasks">

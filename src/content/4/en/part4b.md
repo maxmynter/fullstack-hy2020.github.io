@@ -164,7 +164,7 @@ In principle, the test could also have been defined as a string
 
 The problem here, however, is that when using a string, the value of the header must be exactly the same. For the regex we defined, it is acceptable that the header <i>contains</i> the string in question. The actual value of the header is <i>application/json; charset=utf-8</i>, i.e. it also contains information about character encoding. However, our test is not interested in this and therefore it is better to define the test as a regex instead of an exact string.
 
-The test contains some details that we will explore [a bit later on](/en/part4/testing_the_backend#async-await). The arrow function that defines the test is preceded by the <i>async</i> keyword and the method call for the <i>api</i> object is preceded by the <i>await</i> keyword. We will write a few tests and then take a closer look at this async/await magic. Do not concern yourself with them for now, just be assured that the example tests work correctly. The async/await syntax is related to the fact that making a request to the API is an <i>asynchronous</i> operation. The [Async/await syntax](https://jestjs.io/docs/asynchronous) can be used for writing asynchronous code with the appearance of synchronous code.
+The test contains some details that we will explore [a bit later on](/en/part4/testing_the_backend#async-await). The arrow function that defines the test is preceded by the <i>async</i> keyword and the method call for the <i>api</i> object is preceded by the <i>await</i> keyword. We will write a few tests and then take a closer look at this async/await magic. Do not concern yourself with them for now, just be assured that the example tests work correctly. The async/await syntax is related to the fact that making a request to the API is an <i>asynchronous</i> operation. The [async/await syntax](https://jestjs.io/docs/asynchronous) can be used for writing asynchronous code with the appearance of synchronous code.
 
 Once all the tests (there is currently only one) have finished running we have to close the database connection used by Mongoose. This can be easily achieved with the [afterAll](https://jestjs.io/docs/api#afterallfn-timeout) method:
 
@@ -178,7 +178,7 @@ When running your tests you may run across the following console warning:
 
 ![jest console warning about not exiting](../../images/4/8.png)
 
-The problem is quite likely caused by the Mongoose version 6.x, the problem does not appear when version 5.x is used. [Mongoose documentation](https://mongoosejs.com/docs/jest.html) does not recommend testing Mongoose applications with Jest.
+The problem is quite likely caused by the Mongoose version 6.x, the problem does not appear when version 5.x or 7.x is used. [Mongoose documentation](https://mongoosejs.com/docs/jest.html) does not recommend testing Mongoose applications with Jest.
 
 [One way](https://stackoverflow.com/questions/50687592/jest-and-mongoose-jest-has-detected-opened-handles) to get rid of this is to
 add to the directory <i>tests</i> a file <i>teardown.js</i> with the following content
@@ -214,7 +214,9 @@ test('notes are returned as json', async () => {
   
 This third parameter sets the timeout to 100000 ms. A long timeout ensures that our test won't fail due to the time it takes to run. (A long timeout may not be what you want for tests based on performance or speed, but this is fine for our example tests).
 
-One tiny but important detail: at the [beginning](/en/part4/structure_of_backend_application_introduction_to_testing#project-structure) of this part we extracted the Express application into the <i>app.js</i> file, and the role of the <i>index.js</i> file was changed to launch the application at the specified port with Node's built-in <i>http</i> object:
+If you still encounter issues with mongoose timeouts, set `bufferTimeoutMS` variable to a value significantly higher than 10000 (10 seconds). You could set it like this at the top, right after the `require` statements. `mongoose.set("bufferTimeoutMS", 30000)`  
+  
+One tiny but important detail: at the [beginning](/en/part4/structure_of_backend_application_introduction_to_testing#project-structure) of this part we extracted the Express application into the <i>app.js</i> file, and the role of the <i>index.js</i> file was changed to launch the application at the specified port via `app.listen`:
 
 ```js
 const app = require('./app') // the actual Express app
@@ -226,7 +228,7 @@ app.listen(config.PORT, () => {
 })
 ```
 
-The tests only use the express application defined in the <i>app.js</i> file:
+The tests only use the Express application defined in the <i>app.js</i> file, which does not listen to any ports:
 
 ```js
 const mongoose = require('mongoose')
@@ -347,13 +349,13 @@ The database is cleared out at the beginning, and after that, we save the two no
 Let's also make the following changes to the last two tests:
 
 ```js
-test('all notes are returned', async () => {
+test('all notes are returned', async () => { // highlight-line
   const response = await api.get('/api/notes')
 
   expect(response.body).toHaveLength(initialNotes.length) // highlight-line
 })
 
-test('a specific note is within the returned notes', async () => {
+test('a specific note is within the returned notes', async () => { // highlight-line
   const response = await api.get('/api/notes')
 
   // highlight-start
@@ -685,7 +687,7 @@ afterAll(async () => {
 
 The code using promises works and the tests pass. We are ready to refactor our code to use the async/await syntax.
 
-We make the following changes to the code that takes care of adding a new note(notice that the route handler definition is preceded by the _async_ keyword):
+We make the following changes to the code that takes care of adding a new note (notice that the route handler definition is preceded by the _async_ keyword):
 
 ```js
 notesRouter.post('/', async (request, response, next) => {
@@ -830,7 +832,7 @@ npm install express-async-errors
 ```
 
 Using the library is <i>very</i> easy.
-You introduce the library in <i>app.js</i>:
+You introduce the library in <i>app.js</i>, _before_ you import your routes:
 
 ```js
 const config = require('./utils/config')
@@ -1045,8 +1047,8 @@ and by extending the Jest definitions in the <i>package.json</i> as follows
 {
  //...
  "jest": {
-   "testEnvironment": "node"
-   "globalTeardown": ".test/teardown.js" // highlight-line
+   "testEnvironment": "node",
+   "globalTeardown": "./tests/teardown.js" // highlight-line
  }
 }
 ```

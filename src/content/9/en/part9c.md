@@ -272,7 +272,7 @@ The [frontend](https://github.com/fullstack-hy2020/patientor) has already been b
 
 #### WARNING
 
-Quite often VS code looses track what is really happening in the code and it shows type or style related warnings despite the code has been fixed. If this happens (to me it has happened quite often), just restart the editor. It is also good to doublecheck that everything really works by running the compiler and the eslint from the command line with commands:
+Quite often VS code loses track what is really happening in the code and it shows type or style related warnings despite the code has been fixed. If this happens (to me it has happened quite often), just restart the editor. It is also good to doublecheck that everything really works by running the compiler and the eslint from the command line with commands:
 
 ```bash
 npm run tsc
@@ -654,7 +654,7 @@ We can do that by using the utility type [Pick](https://www.typescriptlang.org/d
 In our project, we should consider that Ilari might want to create a listing of all his diary entries <i>excluding</i> the comment field since, during a very scary flight, he might end up writing something he wouldn't necessarily want to show anyone else.
 
 The [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys) utility type allows us to choose which fields of an existing type we want to use.
-Pick can be used to either construct a completely new type or to inform a function what it should return on runtime.
+Pick can be used to either construct a completely new type or to inform a function that it should return on runtime.
 Utility types are a special kind of type, but they can be used just like regular types.
 
 In our case, to create a "censored" version of the *DiaryEntry* for public displays, we can use *Pick* in the function declaration:
@@ -1094,13 +1094,13 @@ export default toNewDiaryEntry;
 
 > #### A sidenote from the editor
 >
-> <i>If you are like me and hate having a code in broken state for a long time due to incomplete typing, you could star by "faking" the function: </i>
+> <i>If you are like me and hate having a code in broken state for a long time due to incomplete typing, you could start by "faking" the function: </i>
 >
 >
 >```js
 >const toNewDiaryEntry = (object: unknown): NewDiaryEntry => {
 >
->  console.log(object); // now object is no more unused
+>  console.log(object); // now object is no longer unused
 >  const newEntry: NewDiaryEntry = {
 >    weather: 'cloudy', // fake the return value
 >    visibility: 'great',
@@ -1112,7 +1112,7 @@ export default toNewDiaryEntry;
 >};
 >```
 >
-> <i>So before the real data and types are ready to use, I'am just returning here something that has for the sure the right type. The code stays in a operational state all the time and my blood pressure remains in normal level. </i>
+> <i>So before the real data and types are ready to use, I am just returning here something that has for sure the right type. The code stays in an operational state all the time and my blood pressure remains in normal level. </i>
 
 ### Type guards
 

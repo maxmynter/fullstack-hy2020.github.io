@@ -502,6 +502,7 @@ Luetellaan tässä kaikesta huolimatta muitakin UI-frameworkeja:
 - <https://www.radix-ui.com/>
 - <https://react-spectrum.adobe.com/react-aria/index.html>
 - <https://master.co/>
+- <https://baseweb.design/>
 
 Jos oma suosikkisi ei ole mukana, tee pull request!
 
@@ -509,7 +510,7 @@ Jos oma suosikkisi ei ole mukana, tee pull request!
 
 Tapoja liittää tyylejä React-sovellukseen on jo näkemiemme lisäksi [muitakin](https://blog.bitsrc.io/5-ways-to-style-react-components-in-2019-30f1ccc2b5b).
 
-Mielenkiintoisen näkökulman tyylien määrittelyyn tarjoaa ES6:n [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) -syntaksia hyödyntävä [styled-components](https://www.styled-components.com/)-kirjasto.
+Mielenkiintoisen näkökulman tyylien määrittelyyn tarjoaa ES6:n [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) ‑syntaksia hyödyntävä [styled-components](https://www.styled-components.com/)-kirjasto.
 
 Asennetaan styled-components ja tehdään sen avulla esimerkkisovellukseemme muutama tyylillinen muutos. Tehdään ensin kaksi tyylimäärittelyitä käytettävää komponenttia:
 

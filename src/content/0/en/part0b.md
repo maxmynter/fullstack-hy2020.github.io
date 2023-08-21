@@ -80,7 +80,7 @@ Even though it is difficult to notice, the HTML page begins to render before the
 
 The homepage of the example application works like a <i>traditional web application</i>. When entering the page, the browser fetches the HTML document detailing the structure and the textual content of the page from the server.
 
-The server has formed this document somehow. The document can be a <i>static</i> text file saved into the server's directory. The server can also form the HTML documents <i>dynamically</i> according to the application code, using, for example, data from a database.
+The server has formed this document somehow. The document can be a <i>static</i> text file saved into the server's directory. The server can also form the HTML documents <i>dynamically</i> according to the application's code, using, for example, data from a database.
 The HTML code of the example application has been formed dynamically because it contains information on the number of created notes.
 
 The HTML code of the homepage is as follows:
@@ -699,7 +699,7 @@ If necessary, show operations on the browser or on the server as comments on the
 The diagram does not have to be a sequence diagram. Any sensible way of presenting the events is fine.
 
 All necessary information for doing this, and the next two exercises, can be found in the text of [this part](/en/part0/fundamentals_of_web_apps#forms-and-http-post).
-The idea of these exercises is to read the text through once more and to think through what is going on there. Reading the application [code](https://github.com/mluukkai/example_app) is not necessary, but it is of course possible.
+The idea of these exercises is to read the text once more and to think through what is going on there. Reading the application [code](https://github.com/mluukkai/example_app) is not necessary, but it is of course possible.
 
 You can do the diagrams with any program, but perhaps the easiest and the best way to do diagrams is the [Mermaid](https://github.com/mermaid-js/mermaid#sequence-diagram-docs---live-editor) syntax that is now implemented in [GitHub](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/) Markdown pages!
 

@@ -13,7 +13,7 @@ Let's continue our work on the backend of the notes application we started in [p
 
 Before we move into the topic of testing, we will modify the structure of our project to adhere to Node.js best practices.
 
-After making the changes to the directory structure of our project, we end up with the following structure:
+Once we make the changes to the directory structure of our project, we will end up with the following structure:
 
 ```bash
 ├── index.js
@@ -368,9 +368,7 @@ info('message')
 error('error message')
 ```
 
-The latter way may be preferable if only a small portion of the exported functions are used in a file.
-
-E.g. in file <i>controller/notes.js</i> exporting happens as follows:
+The second way of exporting may be preferable if only a small portion of the exported functions are used in a file.  E.g. in file <i>controller/notes.js</i> exporting happens as follows:
 
 ```js
 const notesRouter = require('express').Router()
@@ -773,7 +771,7 @@ Write the tests for this exercise inside of a new <i>describe</i> block. Do the 
 
 #### 4.6*: helper functions and unit tests, step4
 
-This and the next exercise are a little bit more challenging. Finishing these two exercises is not required in to advance in the course material, so it may be a good idea to return to these once you're done going through the material for this part in its entirety.
+This and the next exercise are a little bit more challenging. Finishing these two exercises is not required to advance in the course material, so it may be a good idea to return to these once you're done going through the material for this part in its entirety.
 
 Finishing this exercise can be done without the use of additional libraries. However, this exercise is a great opportunity to learn how to use the [Lodash](https://lodash.com/) library.
 

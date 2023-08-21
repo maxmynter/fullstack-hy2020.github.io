@@ -11,7 +11,7 @@ The appearance of our current application is quite modest. In [exercise 0.2](/en
 
 Let's take a look at how we can add styles to a React application. There are several different ways of doing this and we will take a look at the other methods later on. First, we will add CSS to our application the old-school way; in a single file without using a [CSS preprocessor](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor) (although this is not entirely true as we will learn later on).
 
-Let's add a new <i>index.css</i> file under the <i>src</i> directory and then add it to the application by importing it in the <i>index.js</i> file:
+Let's add a new <i>index.css</i> file under the <i>src</i> directory and then add it to the application by importing it in the <i>main.jsx</i> file:
 
 ```js
 import './index.css'
@@ -77,7 +77,7 @@ In regular HTML, classes are defined as the value of the <i>class</i> attribute:
 <li class="note">some text...</li>
 ```
 
-In React we have to use the [className](https://reactjs.org/docs/dom-elements.html#classname) attribute instead of the class attribute. With this in mind, let's make the following changes to our <i>Note</i> component:
+In React we have to use the [className](https://react.dev/learn#adding-styles) attribute instead of the class attribute. With this in mind, let's make the following changes to our <i>Note</i> component:
 
 ```js
 const Note = ({ note, toggleImportance }) => {
@@ -199,13 +199,13 @@ The result looks like this:
 
 ![error removed from server screenshot from app](../../images/2/26e.png)
 
-The code for the current state of our application can be found in the  <i>part2-7</i> branch on [GitHub](https://github.com/fullstack-hy2020/part2-notes/tree/part2-7).
+The code for the current state of our application can be found in the  <i>part2-7</i> branch on [GitHub](https://github.com/fullstack-hy2020/part2-notes-frontend/tree/part2-7).
 
 ### Inline styles
 
 React also makes it possible to write styles directly in the code as so-called [inline styles](https://react-cn.github.io/react/tips/inline-styles.html).
 
-The idea behind defining inline styles is extremely simple. Any React component or element can be provided with a set of CSS properties as a JavaScript object through the [style](https://reactjs.org/docs/dom-elements.html#style) attribute.
+The idea behind defining inline styles is extremely simple. Any React component or element can be provided with a set of CSS properties as a JavaScript object through the [style](https://react.dev/reference/react-dom/components/common#applying-css-styles) attribute.
 
 CSS rules are defined slightly differently in JavaScript than in normal CSS files. Let's say that we wanted to give some element the color green and italic font that's 16 pixels in size. In CSS, it would look like this:
 
@@ -243,7 +243,7 @@ const Footer = () => {
   return (
     <div style={footerStyle}>
       <br />
-      <em>Note app, Department of Computer Science, University of Helsinki 2022</em>
+      <em>Note app, Department of Computer Science, University of Helsinki 2023</em>
     </div>
   )
 }
@@ -274,7 +274,7 @@ The philosophy of React is, in fact, the polar opposite of this. Since the separ
 
 The structural units that make up the application's functional entities are React components. A React component defines the HTML for structuring the content, the JavaScript functions for determining functionality, and also the component's styling; all in one place. This is to create individual components that are as independent and reusable as possible.
 
-The code of the final version of our application can be found in the  <i>part2-8</i> branch on [GitHub](https://github.com/fullstack-hy2020/part2-notes/tree/part2-8).
+The code of the final version of our application can be found in the  <i>part2-8</i> branch on [GitHub](https://github.com/fullstack-hy2020/part2-notes-frontend/tree/part2-8).
 
 </div>
 
@@ -357,7 +357,7 @@ The error message is
 Cannot read properties of null (reading 'map')
 ```
 
-The variable _notesToShow_ is first assigned the value of the state _notes_ and then the code tries to call method _map_ to an nonexisting object, that is, to _null_.
+The variable _notesToShow_ is first assigned the value of the state _notes_ and then the code tries to call method _map_ to a nonexisting object, that is, to _null_.
 
 What is the reason for that?
 
@@ -526,7 +526,7 @@ const App = () => {
 }
 ```
 
-The useEffect hook has now _[currency]_ as the second parameter. The effect function is therefore executed after the first render, and <i>always</i> after the table as its second parameter _[currency]_ changes. That is, when the state _currency_ gets a new value, the content of the table changes and the effect function is executed.
+The useEffect hook now has _[currency]_ as the second parameter. The effect function is therefore executed after the first render, and <i>always</i> after the table as its second parameter _[currency]_ changes. That is, when the state _currency_ gets a new value, the content of the table changes and the effect function is executed.
 
 The effect has the following condition
 
@@ -566,9 +566,7 @@ However, there are situations where that technique would not work. For example, 
 
 <h4>2.18* Data for countries, step1</h4>
 
-The API [https://restcountries.com](https://restcountries.com) provides data for different countries in a machine-readable format, a so-called REST API.
-
-Create an application, in which one can look at data from various countries. The application should probably get the data from the endpoint [all](https://restcountries.com/v3.1/all).
+At [https://studies.cs.helsinki.fi/restcountries/](https://studies.cs.helsinki.fi/restcountries/) you can find a service that offers a lot of information related to different countries in a so-called machine-readable format via the REST API. Make an application that allows you to view information from different countries.
 
 The user interface is very simple. The country to be shown is found by typing a search query into the search field.
 
@@ -585,8 +583,6 @@ When there is only one country matching the query, then the basic data of the co
 ![flag and additional attributes screenshot](../../images/2/19c3.png)
 
 **NB**: It is enough that your application works for most countries. Some countries, like <i>Sudan</i>, can be hard to support since the name of the country is part of the name of another country, <i>South Sudan</i>. You don't need to worry about these edge cases.
-
-**WARNING** create-react-app will automatically turn your project into a git-repository unless you create your application inside of an existing git repository. **Most likely you do not want each of your projects to be a separate repository**, so simply run the _rm -rf .git_ command at the root of your application.
 
 <h4>2.19*: Data for countries, step2</h4>
 
@@ -608,29 +604,21 @@ If you use Open weather map, [here](https://openweathermap.org/weather-condition
 
 **NB:** In some browsers (such as Firefox) the chosen API might send an error response, which indicates that HTTPS encryption is not supported, although the request URL starts with _http://_. This issue can be fixed by completing the exercise using Chrome.
 
-**NB:** You need an api-key to use almost every weather service. Do not save the api-key to source control! Nor hardcode the api-key to your source code. Instead use an [environment variable](https://create-react-app.dev/docs/adding-custom-environment-variables/) to save the key.
+**NB:** You need an api-key to use almost every weather service. Do not save the api-key to source control! Nor hardcode the api-key to your source code. Instead use an [environment variable](https://vitejs.dev/guide/env-and-mode.html) to save the key.
 
 Assuming the api-key is <i>t0p53cr3t4p1k3yv4lu3</i>, when the application is started like so:
 
 ```bash
-REACT_APP_API_KEY=t0p53cr3t4p1k3yv4lu3 npm start // For Linux/macOS Bash
-($env:REACT_APP_API_KEY="t0p53cr3t4p1k3yv4lu3") -and (npm start) // For Windows PowerShell
-set "REACT_APP_API_KEY=t0p53cr3t4p1k3yv4lu3" && npm start // For Windows cmd.exe
+VITE_SOME_KEY=54l41n3n4v41m34rv0 npm start3 npm start // For Linux/macOS Bash
+($env:VITE_SOME_KEY="54l41n3n4v41m34rv0") -and (npm start) // For Windows PowerShell
+set "VITE_SOME_KEY=54l41n3n4v41m34rv0" && npm start // For Windows cmd.exe
 ```
 
 you can access the value of the key from the _process.env_ object:
 
 ```js
-const api_key = process.env.REACT_APP_API_KEY
-// variable api_key has now the value set in startup
-```
-
-Note that if you created the application using _npx create-react-app ..._ and you want to use a different name for your environment variable then the environment variable name must still begin with *REACT\_APP_*. You can also use a `.env` file rather than defining it on the command line each time by creating a file entitled '.env' in the root of the project and adding the following.
-
-```
-# .env
-
-REACT_APP_API_KEY=t0p53cr3t4p1k3yv4lu3
+const api_key = import.meta.env.VITE_SOME_KEY
+// variable api_key now has the value set in startup
 ```
 
 Note that you will need to restart the server to apply the changes.

@@ -11,7 +11,7 @@ Olemme noudattaneet sovelluksen tilan hallinnassa Reactin suosittelemaa käytän
 
 ### Flux-arkkitehtuuri
 
-Facebook kehitti jo Reactin historian varhaisvaiheissa tilan hallinnan ongelmia helpottamaan [Flux]((https://facebook.github.io/flux/docs/in-depth-overview/)-arkkitehtuurin. Fluxissa sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli <i>storeihin</i>. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli <i>actionien</i> avulla.
+Facebook kehitti jo Reactin historian varhaisvaiheissa tilan hallinnan ongelmia helpottamaan [Flux](https://facebookarchive.github.io/flux/docs/in-depth-overview)-arkkitehtuurin. Fluxissa sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli <i>storeihin</i>. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli <i>actionien</i> avulla.
 
 Kun action muuttaa storen tilaa, renderöidään näkymät uudelleen:
 
@@ -31,7 +31,7 @@ Tutustutaan Reduxiin tekemällä jälleen kerran laskurin toteuttava sovellus:
 
 ![Renderöity kokonaisluku sekä kolme nappia: plus, minus ja zero](../../images/6/1.png)
 
-Tehdään uusi Create React App -sovellus ja asennetaan siihen <i>Redux</i>:
+Tehdään uusi Create React App ‑sovellus ja asennetaan siihen <i>Redux</i>:
 
 ```bash
 npm install redux
@@ -510,11 +510,11 @@ state.map(note =>
 )
 ```
 
-### Array spread -syntaksi
+### Array spread ‑syntaksi
 
 Koska reducerille on nyt suhteellisen hyvät testit, voimme refaktoroida koodia turvallisesti.
 
-Uuden muistiinpanon lisäys luo palautettavan tilan taulukon _concat_-funktiolla. Katsotaan nyt miten voimme toteuttaa saman hyödyntämällä JavaScriptin [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) -syntaksia:
+Uuden muistiinpanon lisäys luo palautettavan tilan taulukon _concat_-funktiolla. Katsotaan nyt miten voimme toteuttaa saman hyödyntämällä JavaScriptin [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) ‑syntaksia:
 
 ```js
 const noteReducer = (state = [], action) => {
@@ -549,7 +549,7 @@ Jos olisimme sijoittaneet taulukon toisen sisälle ilman spreadia, eli
 [luvut, 4, 5]
 ```
 
-lopputulos olisi ollut /i>.[[1, 2, 3], 4, 5]</i>..
+lopputulos olisi ollut <i>[[1, 2, 3], 4, 5]</i>.
 
 Samannäköinen syntaksi toimii taulukosta [destrukturoimalla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) alkioita otettaessa siten, että se <i>kerää</i> loput alkiot:
 
@@ -862,9 +862,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-Uutta tässä on se, että sovellus on määritelty React Redux -kirjaston tarjoaman [Provider](https://react-redux.js.org/api/provider)-komponentin lapsena ja että sovelluksen käyttämä store on annettu Provider-komponentin attribuutiksi <i>store</i>. 
+Uutta tässä on se, että sovellus on määritelty React Redux ‑kirjaston tarjoaman [Provider](https://react-redux.js.org/api/provider)-komponentin lapsena ja että sovelluksen käyttämä store on annettu Provider-komponentin attribuutiksi <i>store</i>. 
 
-Action creator -funktioiden määrittely on siirretty reducerin kanssa samaan tiedostoon <i>reducers/noteReducer.js</i>, joka näyttää seuraavalta:
+Action creator ‑funktioiden määrittely on siirretty reducerin kanssa samaan tiedostoon <i>reducers/noteReducer.js</i>, joka näyttää seuraavalta:
 
 ```js
 const noteReducer = (state = [], action) => {
@@ -992,9 +992,9 @@ const App = () => {
 }
 ```
 
-React Redux -kirjaston tarjoama <i>useDispatch</i>-hook siis tarjoaa mille tahansa React-komponentille pääsyn tiedostossa <i>index.js</i> määritellyn Redux-storen dispatch-funktioon, jonka avulla komponentti pääsee tekemään muutoksia Redux-storen tilaan.
+React Redux ‑kirjaston tarjoama <i>useDispatch</i>-hook siis tarjoaa mille tahansa React-komponentille pääsyn tiedostossa <i>index.js</i> määritellyn Redux-storen dispatch-funktioon, jonka avulla komponentti pääsee tekemään muutoksia Redux-storen tilaan.
 
-Storeen talletettuihin muistiinpanoihin komponentti pääsee käsiksi React Redux -kirjaston [useSelector](https://react-redux.js.org/api/hooks#useselector)-hookin kautta:
+Storeen talletettuihin muistiinpanoihin komponentti pääsee käsiksi React Redux ‑kirjaston [useSelector](https://react-redux.js.org/api/hooks#useselector)-hookin kautta:
 
 
 ```js
@@ -1164,7 +1164,7 @@ Huolehdi siitä, että anekdootit pysyvät äänten mukaisessa suuruusjärjestyk
 
 #### 6.6: anekdootit, step4
 
-Jos et jo sitä tehnyt, eriytä action-olioiden luominen [action creator](https://redux.js.org/basics/actions#action-creators) -funktioihin ja sijoita ne tiedostoon <i>src/reducers/anecdoteReducer.js</i>. Toimi siis kuten materiaalin esimerkissä on toimittu kohdasta [action creator](/osa6/flux_arkkitehtuuri_ja_redux#action-creatorit) alkaen.
+Jos et jo sitä tehnyt, eriytä action-olioiden luominen [action creator](https://redux.js.org/basics/actions#action-creators) ‑funktioihin ja sijoita ne tiedostoon <i>src/reducers/anecdoteReducer.js</i>. Toimi siis kuten materiaalin esimerkissä on toimittu kohdasta [action creator](/osa6/flux_arkkitehtuuri_ja_redux#action-creatorit) alkaen.
 
 #### 6.7: anekdootit, step5
 
